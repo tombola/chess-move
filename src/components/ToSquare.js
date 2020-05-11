@@ -2,7 +2,7 @@ import React from 'react';
 
 class ToSquare extends React.Component {
     render() {
-        return <p>to there</p>
+        return <p className="move-description--to">→ C3</p>
     }
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 class FromSquare extends React.Component {
     render() {
-        return <p>from here</p>
+        return <p className="move-description--from">B1 →</p>
     }
 }
 

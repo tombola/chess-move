@@ -6,7 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #333;
-  color: #eee
+  color: #eee;
+  font-size: 32px;
 }
 
 code {
@@ -16,4 +17,20 @@ code {
 
 .chess-piece {
   font-size: 240px;
+  line-height: 0.5;
+}
+
+.move-description--from {
+  font-size: 32px;
+}
+
+.move-description--to {
+  font-size: 72px;
+}
+
+.next-move {
+  font-size: 24px;
+  background-color: #333;
+  color: #eee;
+  border-radius: 10px;
 }

@@ -25,7 +25,8 @@ code {
 }
 
 .move-description--to {
-  font-size: 72px;
+  font-size: 90px;
+  line-height: 0;
 }
 
 .next-move {

@@ -1,9 +1,16 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-class MoveDescription extends React.Component {
+class NextMoveButton extends React.Component {
+    nextMove = () => {
+        const { history } = this.props;
+        if (history) {
+            history.push('nextmove')
+        }
+    }
     render() {
-        return <button className="next-move">Next Move</button>
+        return <button className="next-move" onClick={this.nextMove}>Next Move</button>
     }
 }
 
-export default MoveDescription;
+export default withRouter(NextMoveButton);

@@ -1,15 +1,14 @@
 import React from 'react';
 import ChessPieceIcon from './ChessPieceIcon';
-import { getColumn } from '../helpers';
 import FromSquare from './FromSquare';
 import NextMoveButton from './NextMoveButton';
 import ToSquare from './ToSquare';
 
-class MoveDescription extends React.Component {
+class MakeMove extends React.Component {
     render() {
+        console.log("Enter your next move")
         return (
             <React.Fragment>
-                {console.log(getColumn(this.props.moveFrom))}
                 <FromSquare position={this.props.moveFrom} />
                 <ChessPieceIcon />
                 <ToSquare position={this.props.moveTo} />
@@ -19,4 +18,4 @@ class MoveDescription extends React.Component {
     }
 }
 
-export default MoveDescription;
+export default MakeMove;

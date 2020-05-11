@@ -5,11 +5,11 @@ function getNumber(numericString) {
 }
 
 export function getRow(position) {
-    return (position.length === 2) ? getNumber(position[1]) : null
+    return (position !== undefined && position.length === 2) ? getNumber(position[1]) : null
 }
 
 export function getColumn(position) {
-    return (position.length === 2) ? position[0] : null
+    return (position !== undefined && position.length === 2) ? position[0] : null
 }
 
 export function getPosition(row, column) {

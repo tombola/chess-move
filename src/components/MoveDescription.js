@@ -1,5 +1,5 @@
 import React from 'react';
-import ChessSquare from './ChessSquare';
+import ChessPieceIcon from './ChessPieceIcon';
 import FromSquare from './FromSquare';
 import NextMoveButton from './NextMoveButton';
 import ToSquare from './ToSquare';
@@ -9,7 +9,7 @@ class MoveDescription extends React.Component {
         return (
             <React.Fragment>
                 <FromSquare />
-                <ChessSquare />
+                <ChessPieceIcon />
                 <ToSquare />
                 <NextMoveButton />
             </React.Fragment>

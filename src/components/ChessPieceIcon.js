@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ChessSquare extends React.Component {
+class ChessPieceIcon extends React.Component {
     render() {
         return (
             <div className="chess-square">
@@ -10,4 +10,4 @@ class ChessSquare extends React.Component {
     }
 }
 
-export default ChessSquare;
+export default ChessPieceIcon;

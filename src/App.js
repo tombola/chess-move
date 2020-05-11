@@ -5,7 +5,7 @@ import MoveDescription from './components/MoveDescription';
 function App() {
   return (
     <div className="App">
-      <MoveDescription></MoveDescription>
+      <MoveDescription />
     </div>
   );
 }

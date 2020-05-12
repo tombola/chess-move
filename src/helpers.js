@@ -1,6 +1,6 @@
-const columns = ["A","B","C","D","E","F","G","H"]
+const COLUMNS = ["A","B","C","D","E","F","G","H"]
 
-const gamePieces = {
+const GAME_PIECES = {
     "king":     {"white": "♔", "black": "♚"},
     "queen":    {"white": "♕", "black": "♛"},
     "rook":     {"white": "♖", "black": "♜"},
@@ -22,7 +22,7 @@ export function getColumn(position) {
 }
 
 export function getPosition(row, column) {
-    if (!isNaN(row) && row <= 8 && columns.includes(column)) {
+    if (!isNaN(row) && row <= 8 && COLUMNS.includes(column)) {
         return {"row": row, "col": column}
     }
 }
@@ -34,9 +34,9 @@ export function getCoordinates(position) {
 }
 
 export function positionLetterToNumber(letter) {
-    const positionLetter = columns.indexOf(letter)
+    const positionLetter = COLUMNS.indexOf(letter)
     if (positionLetter > -1) {
-        return columns.indexOf(letter) + 1
+        return COLUMNS.indexOf(letter) + 1
     }
     return null
 }

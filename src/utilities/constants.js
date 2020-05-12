@@ -9,3 +9,12 @@ export const GAME_PIECES = {
     "knight":   {"white": "♘", "black": "♞"},
     "pawn":     {"white": "♙", "black": "♟"},
 }
+
+export const GAME_PIECE_OPTIONS = [
+    "king",
+    "queen",
+    "rook",
+    "bishop",
+    "knight",
+    "pawn",
+]

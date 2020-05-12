@@ -1,23 +1,22 @@
 import React from 'react';
-import ChessPieceIcon from './ChessPieceIcon';
-import FromSquare from './FromSquare';
-import NextMoveButton from './NextMoveButton';
-import ToSquare from './ToSquare';
-import { COLUMNS, ROWS, GAME_PIECES } from '../utilities/constants'
-import { array } from 'prop-types';
+import { COLUMNS, ROWS, GAME_PIECE_OPTIONS } from '../utilities/constants'
 
 class MakeMove extends React.Component {
     render() {
         console.log("Enter your next move")
-        const col_options = COLUMNS.map(c => <option>{c}</option>)
-        const row_options = ROWS.map(r => <option>{r}</option>)
+        const col_options = COLUMNS.map(c => <option key={`c${c}`}>{c}</option>)
+        const row_options = ROWS.map(r => <option key={`r${r}`}>{r}</option>)
+        const piece_options = GAME_PIECE_OPTIONS.map(p => <option key={`p${p}`}>{p}</option>)
         return (
             <form>
-                <select>
+                <select name="column">
                     {col_options}
                 </select>
-                <select>
+                <select name="row">
                     {row_options}
+                </select>
+                <select name="row">
+                    {piece_options}
                 </select>
             </form>
         )

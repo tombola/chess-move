@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Router from './components/Router';
+import Game from './components/Game';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router />
+    <Game />
   </React.StrictMode>,
   document.getElementById('root')
 );

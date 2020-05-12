@@ -18,3 +18,14 @@ export const GAME_PIECE_OPTIONS = [
     "knight",
     "pawn",
 ]
+
+export const GAME_INITIAL_STATE = [
+    ["BR","BN","BB","BQ","BK","BB","BN","BR"],
+    ["BP","BP","BP","BP","BP","BP","BP","BP"],
+    ["","","","","","","",""],
+    ["","","","","","","",""],
+    ["","","","","","","",""],
+    ["","","","","","","",""],
+    ["WP","WP","WP","WP","WP","WP","WP","WP",],
+    ["WR","WN","WB","WQ","WK","WB","WN","WR"],
+]

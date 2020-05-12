@@ -1,4 +1,4 @@
-const helpers = require('../helpers');
+const helpers = require('../utilities/helpers');
 
 test('get row from chess position', () => {
     expect(helpers.getRow("A2")).toBe(2);

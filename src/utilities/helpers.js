@@ -1,13 +1,4 @@
-const COLUMNS = ["A","B","C","D","E","F","G","H"]
-
-const GAME_PIECES = {
-    "king":     {"white": "♔", "black": "♚"},
-    "queen":    {"white": "♕", "black": "♛"},
-    "rook":     {"white": "♖", "black": "♜"},
-    "bishop":   {"white": "♗", "black": "♝"},
-    "knight":   {"white": "♘", "black": "♞"},
-    "pawn":     {"white": "♙", "black": "♟"},
-}
+import { COLUMNS } from './constants'
 
 function getNumber(numericString) {
     return !isNaN(numericString) ? parseInt(numericString) : null

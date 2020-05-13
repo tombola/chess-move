@@ -1,5 +1,5 @@
 import React from 'react';
-import { COLUMNS, ROWS, GAME_PIECE_OPTIONS } from '../utilities/constants'
+import { COLUMNS, ROWS, GAME_PIECE_NOTATION, GAME_INITIAL_STATE } from '../utilities/constants'
 
 class MakeMove extends React.Component {
     columnRef = React.createRef();
@@ -18,9 +18,9 @@ class MakeMove extends React.Component {
 
     render() {
         console.log("Enter your next move")
-        const col_options = COLUMNS.map(c => <option key={`c${c}`}>{c}</option>)
-        const row_options = ROWS.map(r => <option key={`r${r}`}>{r}</option>)
-        const piece_options = GAME_PIECE_OPTIONS.map(p => <option key={`p${p}`}>{p}</option>)
+        const col_options = COLUMNS.map(c => <option value={c} key={`c${c}`}>{c}</option>)
+        const row_options = ROWS.map(r => <option value={r} key={`r${r}`}>{r}</option>)
+        const piece_options = Object.keys(GAME_PIECE_NOTATION).map(p => <option value={p} key={p}>{GAME_PIECE_NOTATION[p]}</option>)
         return (
             <form onSubmit={this.submitMove}>
                 <select name="column" ref={this.columnRef}>

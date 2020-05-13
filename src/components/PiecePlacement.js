@@ -15,7 +15,7 @@ class PiecePlacement extends React.Component {
         }
         // TODO: Validate the piece placement.
         this.props.sendPlacement(move)
-        this.props.submitAction()
+        if (this.props.submitAction) {this.props.submitAction()}
     }
 
     render() {

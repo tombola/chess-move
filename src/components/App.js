@@ -1,7 +1,7 @@
-import React from 'react';
-import '../App.css';
-import { BrowserRouter } from 'react-router-dom';
-import Game from './Game';
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import "../App.css";
+import Game from "./Game";
 
 function App() {
   return (

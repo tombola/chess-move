@@ -8,11 +8,15 @@ import { GAME_INITIAL_STATE } from "../utilities/constants";
 
 class Game extends React.Component {
   state = {
-    moves: [],
+    moveHistory: [],
     gameState: GAME_INITIAL_STATE,
+    nextMove: {},
   };
-  nextMove = (move) => {
-    console.log("Play move");
+  setNextMoveFrom = (move) => {
+    console.log("Set the from position for next move");
+  };
+  setNextMoveTo = (move) => {
+    console.log("Set the destination for next move");
   };
   getLastMove = () => {
     return "C3"
@@ -28,11 +32,11 @@ class Game extends React.Component {
       <Switch>
         <Route
           path="/game/:gameId/next/from"
-          render={(props) => <MoveFrom nextMove={this.nextMove} />}
+          render={(props) => <MoveFrom setNextMoveFrom={this.setNextMoveFrom} />}
         />
         <Route
           path="/game/:gameId/next/to"
-          render={(props) => <MoveTo nextMove={this.nextMove} />}
+          render={(props) => <MoveTo setNextMoveTo={this.setNextMoveTo} />}
         />
         <Route
           path="/game/:gameId/lastmove"

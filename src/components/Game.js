@@ -18,12 +18,8 @@ class Game extends React.Component {
     const nextMove = { ...this.state.nextMove };
     // TODO: check if it is our turn
     nextMove.from = move;
-    // Unset destination value as it would have to be re-validated
-    // against the from position.
     nextMove.to = {};
-    console.log("Set the from position for next move");
-    this.setState({ nextMove: nextMove });
-    console.log(this.state.nextMove);
+    this.setState({ nextMove });
   };
   setNextMoveTo = (move) => {
     console.log("Set the destination for next move");

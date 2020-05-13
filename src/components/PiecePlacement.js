@@ -13,7 +13,9 @@ class PiecePlacement extends React.Component {
             row: this.rowRef.current.value,
             piece: this.pieceRef.current.value
         }
+        // TODO: Validate the piece placement.
         this.props.sendPlacement(move)
+        this.props.submitAction()
     }
 
     render() {

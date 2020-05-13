@@ -14,9 +14,11 @@ class Game extends React.Component {
   };
   setNextMoveFrom = (move) => {
     console.log("Set the from position for next move");
+    console.log(move)
   };
   setNextMoveTo = (move) => {
     console.log("Set the destination for next move");
+    console.log(move)
   };
   getLastMove = () => {
     return "C3"

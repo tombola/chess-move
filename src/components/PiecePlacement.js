@@ -14,11 +14,9 @@ class PiecePlacement extends React.Component {
             piece: this.pieceRef.current.value
         }
         this.props.sendPlacement(move)
-        console.log(move)
     }
 
     render() {
-        console.log("Enter your next move")
         const col_options = COLUMNS.map(c => <option value={c} key={`c${c}`}>{c}</option>)
         const row_options = ROWS.map(r => <option value={r} key={`r${r}`}>{r}</option>)
         const piece_options = Object.keys(GAME_PIECE_NOTATION).map(p => <option value={p} key={p}>{GAME_PIECE_NOTATION[p]}</option>)

@@ -8,9 +8,9 @@ class MoveDescription extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <FromSquare position={this.props.moveFrom} />
-                <ChessPieceIcon />
-                <ToSquare position={this.props.moveTo} />
+                <FromSquare position={this.props.getPrecedingMove()} />
+                <ChessPieceIcon chessPiece={this.props.getLastMovePiece()} />
+                <ToSquare position={this.props.getLastMove()} />
                 <NextMoveButton />
             </React.Fragment>
         )

@@ -4,7 +4,7 @@ class ChessPieceIcon extends React.Component {
     render() {
         return (
             <div className="chess-square">
-                <span className="chess-piece">♘</span>
+                <span className="chess-piece">{this.props.chessPiece}</span>
             </div>
         )
     }

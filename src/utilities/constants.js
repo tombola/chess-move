@@ -19,6 +19,15 @@ export const GAME_PIECE_OPTIONS = [
     "pawn",
 ]
 
+export const GAME_PIECE_NOTATION = {
+    "king": "K",
+    "queen": "Q",
+    "rook": "R",
+    "bishop": "B",
+    "knight": "N",
+    "pawn": "P",
+}
+
 export const GAME_INITIAL_STATE = [
     ["BR","BN","BB","BQ","BK","BB","BN","BR"],
     ["BP","BP","BP","BP","BP","BP","BP","BP"],

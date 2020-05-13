@@ -13,6 +13,15 @@ class Game extends React.Component {
   playMove = (move) => {
     console.log("Play move");
   };
+  getLastMove = () => {
+    return "C3"
+  };
+  getLastMovePiece = () => {
+    return "♘"
+  }
+  getPrecedingMove = () => {
+    return "A2"
+  };
   render() {
     return (
       <Switch>
@@ -20,7 +29,14 @@ class Game extends React.Component {
           path="/game/:gameId/nextmove"
           render={(props) => <MakeMove playMove={this.playMove} />}
         />
-        <Route path="/game/:gameId/currentmove" component={MoveDescription} />
+        <Route
+          path="/game/:gameId/lastmove"
+          render={(props) => <MoveDescription
+              getLastMove={this.getLastMove}
+              getPrecedingMove={this.getPrecedingMove}
+              getLastMovePiece={this.getLastMovePiece}
+          />}
+        />
         <Route component={NotFound} />
       </Switch>
     );

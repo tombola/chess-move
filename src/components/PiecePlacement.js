@@ -1,18 +1,19 @@
 import React from 'react';
 import { COLUMNS, ROWS, GAME_PIECE_NOTATION, GAME_INITIAL_STATE } from '../utilities/constants'
 
-class MakeMove extends React.Component {
+class PiecePlacement extends React.Component {
     columnRef = React.createRef();
     rowRef = React.createRef();
     pieceRef = React.createRef();
 
-    submitMove = event => {
+    submitPlacement = event => {
         event.preventDefault();
         const move = {
             column: this.columnRef.current.value,
             row: this.rowRef.current.value,
             piece: this.pieceRef.current.value
         }
+        this.props.sendPlacement(move)
         console.log(move)
     }
 
@@ -22,7 +23,7 @@ class MakeMove extends React.Component {
         const row_options = ROWS.map(r => <option value={r} key={`r${r}`}>{r}</option>)
         const piece_options = Object.keys(GAME_PIECE_NOTATION).map(p => <option value={p} key={p}>{GAME_PIECE_NOTATION[p]}</option>)
         return (
-            <form onSubmit={this.submitMove}>
+            <form onSubmit={this.submitPlacement}>
                 <select name="column" ref={this.columnRef}>
                     {col_options}
                 </select>
@@ -38,5 +39,5 @@ class MakeMove extends React.Component {
     }
 }
 
-export default MakeMove;
+export default PiecePlacement;
 

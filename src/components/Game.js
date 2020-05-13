@@ -1,7 +1,8 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import MoveDescription from "./MoveDescription";
-import MakeMove from "./MakeMove";
+import MoveFrom from "./MoveFrom";
+import MoveTo from "./MoveTo";
 import NotFound from "./NotFound";
 import { GAME_INITIAL_STATE } from "../utilities/constants";
 
@@ -10,7 +11,7 @@ class Game extends React.Component {
     moves: [],
     gameState: GAME_INITIAL_STATE,
   };
-  playMove = (move) => {
+  nextMove = (move) => {
     console.log("Play move");
   };
   getLastMove = () => {
@@ -26,8 +27,12 @@ class Game extends React.Component {
     return (
       <Switch>
         <Route
-          path="/game/:gameId/nextmove"
-          render={(props) => <MakeMove playMove={this.playMove} />}
+          path="/game/:gameId/next/from"
+          render={(props) => <MoveFrom nextMove={this.nextMove} />}
+        />
+        <Route
+          path="/game/:gameId/next/to"
+          render={(props) => <MoveTo nextMove={this.nextMove} />}
         />
         <Route
           path="/game/:gameId/lastmove"

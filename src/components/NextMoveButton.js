@@ -5,7 +5,7 @@ class NextMoveButton extends React.Component {
     nextMove = () => {
         const { history } = this.props;
         if (history) {
-            history.push('nextmove')
+            history.push('next/from')
         }
     }
     render() {

@@ -1,9 +1,12 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { formatRoute } from "react-router-named-routes";
-import base from "../base";
 import { GAME_INITIAL_STATE } from "../utilities/constants";
 import * as routes from "../utilities/routes";
+import {
+  disconnectGameFromStorage,
+  syncGameWithStorage,
+} from "../utilities/storage";
 import MoveDescription from "./MoveDescription";
 import MoveFrom from "./MoveFrom";
 import MoveTo from "./MoveTo";
@@ -16,13 +19,10 @@ class Game extends React.Component {
     nextMove: {},
   };
   componentDidMount() {
-    this.ref = base.syncState("joevtom/nextMove", {
-      context: this,
-      state: "nextMove",
-    });
+    syncGameWithStorage(this);
   }
   componentWillUnmount() {
-    base.removeBinding(this.ref);
+    disconnectGameFromStorage(this);
   }
   setNextMoveFrom = (move) => {
     const nextMove = { ...this.state.nextMove };

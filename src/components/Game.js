@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { formatRoute } from "react-router-named-routes";
+import base from "../base";
 import { GAME_INITIAL_STATE } from "../utilities/constants";
 import * as routes from "../utilities/routes";
 import MoveDescription from "./MoveDescription";
@@ -14,6 +15,15 @@ class Game extends React.Component {
     gameState: GAME_INITIAL_STATE,
     nextMove: {},
   };
+  componentDidMount() {
+    this.ref = base.syncState("joevtom/nextMove", {
+      context: this,
+      state: "nextMove",
+    });
+  }
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
+  }
   setNextMoveFrom = (move) => {
     const nextMove = { ...this.state.nextMove };
     // TODO: check if it is our turn
@@ -22,8 +32,10 @@ class Game extends React.Component {
     this.setState({ nextMove });
   };
   setNextMoveTo = (move) => {
-    console.log("Set the destination for next move");
-    console.log(move);
+    const nextMove = { ...this.state.nextMove };
+    // TODO: check if it is our turn
+    nextMove.to = move;
+    this.setState({ nextMove });
   };
   getLastMove = () => {
     return "C3";

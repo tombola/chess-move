@@ -1,9 +1,9 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { formatRoute } from "react-router-named-routes";
 import { NEW_GAME } from "../utilities/routes";
 
-class NewGame extends React.Component {
+class Landing extends React.Component {
   gameIdRef = React.createRef();
 
   submitNewGame = (event) => {
@@ -23,8 +23,8 @@ class NewGame extends React.Component {
     if (currentGame) {
       continueLink = (
         <p>
-          <Link to={formatRoute(NEW_GAME, { gameId: "joevtom" })}>
-            Continue game <em>joevtom</em>
+          <Link to={formatRoute(NEW_GAME, { gameId: currentGame })}>
+            Continue current game
           </Link>
         </p>
       );
@@ -32,15 +32,13 @@ class NewGame extends React.Component {
 
     return (
       <React.Fragment>
-        <form onSubmit={this.submitNewGame}>
-          <h1>New game</h1>
-          <input type="text" name="gameId" ref={this.gameIdRef} />
-          <input type="submit" value="Start" />
-        </form>
+        <h1>
+          <Link to={formatRoute(NEW_GAME)}>New Game</Link>
+        </h1>
         {continueLink}
       </React.Fragment>
     );
   }
 }
 
-export default withRouter(NewGame);
+export default Landing;

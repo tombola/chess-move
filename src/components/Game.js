@@ -1,12 +1,16 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { formatRoute } from "react-router-named-routes";
+import { v4 as uuidv4 } from "uuid";
 import { GAME_INITIAL_STATE } from "../utilities/constants";
 import * as routes from "../utilities/routes";
 import {
   disconnectGameFromStorage,
+  restoreGameFromLocalStorage,
   syncGameWithStorage,
+  updateGameLocalStorage,
 } from "../utilities/storage";
+import Landing from "./Landing";
 import MoveDescription from "./MoveDescription";
 import MoveFrom from "./MoveFrom";
 import MoveTo from "./MoveTo";
@@ -15,33 +19,28 @@ import NotFound from "./NotFound";
 
 class Game extends React.Component {
   state = {
+    gameId: "",
     moveHistory: [],
     gameState: GAME_INITIAL_STATE,
     nextMove: {},
-    currentGame: "",
+    playSide: "",
   };
   componentDidMount() {
-    // If browser is refreshed, restore game from local storage
-    const localCurrentGame = localStorage.getItem("currentGame");
-    if (!this.state.currentGame && localCurrentGame) {
-      this.setState({ currentGame: JSON.parse(localCurrentGame) });
-    }
-    const localNextMove = localStorage.getItem("nextMove");
-    if (Object.keys(this.state.nextMove).length === 0 && localNextMove) {
-      console.log("set next move");
-      this.setState({ nextMove: JSON.parse(localNextMove) });
-    }
+    restoreGameFromLocalStorage(this);
     syncGameWithStorage(this);
   }
   componentDidUpdate() {
-    localStorage.setItem("nextMove", JSON.stringify(this.state.nextMove));
-    localStorage.setItem("currentGame", JSON.stringify(this.state.currentGame));
+    updateGameLocalStorage(this);
   }
   componentWillUnmount() {
     disconnectGameFromStorage(this);
   }
-  startNewGame = (gameId) => {
-    console.log(`Start a new game with id ${gameId}`);
+  startNewGame = (side) => {
+    const gameId = uuidv4();
+    const playSide = side || "white";
+    console.log(`start new game playing as ${playSide} with id ${gameId}`);
+    this.setState({ gameId, playSide });
+    return gameId;
   };
   setNextMoveFrom = (move) => {
     const nextMove = { ...this.state.nextMove };
@@ -69,29 +68,48 @@ class Game extends React.Component {
     return (
       <Switch>
         <Route
-          path={formatRoute(routes.NEXT_MOVE_FROM, { gameId: "joevtom" })}
+          path={formatRoute(routes.NEXT_MOVE_FROM)}
           render={(props) => (
-            <MoveFrom setNextMoveFrom={this.setNextMoveFrom} />
-          )}
-        />
-        <Route
-          path={formatRoute(routes.NEXT_MOVE_TO, { gameId: "joevtom" })}
-          render={(props) => <MoveTo setNextMoveTo={this.setNextMoveTo} />}
-        />
-        <Route
-          path={formatRoute(routes.LAST_MOVE, { gameId: "joevtom" })}
-          render={(props) => (
-            <MoveDescription
-              getLastMove={this.getLastMove}
-              getPrecedingMove={this.getPrecedingMove}
-              getLastMovePiece={this.getLastMovePiece}
+            <MoveFrom
+              gameId={this.state.gameId}
+              setNextMoveFrom={this.setNextMoveFrom}
+              postSubmitRoute={formatRoute(routes.NEXT_MOVE_TO, {
+                gameId: this.props.gameId,
+              })}
             />
           )}
         />
         <Route
-          path="/"
+          path={formatRoute(routes.NEXT_MOVE_TO)}
+          render={(props) => (
+            <MoveTo
+              gameId={this.state.gameId}
+              setNextMoveTo={this.setNextMoveTo}
+              postSubmitRoute={formatRoute(routes.LAST_MOVE, {
+                gameId: this.props.gameId,
+              })}
+            />
+          )}
+        />
+        <Route
+          path={formatRoute(routes.LAST_MOVE)}
+          render={(props) => (
+            <MoveDescription
+              gameId={this.state.gameId}
+              getLastMove={this.getLastMove}
+              getPrecedingMove={this.getPrecedingMove}
+              getLastMovePiece={this.getLastMovePiece}
+              nextTurnRoute={formatRoute(routes.NEXT_MOVE_FROM, {
+                gameId: this.props.gameId,
+              })}
+            />
+          )}
+        />
+        <Route
+          path={formatRoute(routes.NEW_GAME)}
           render={(props) => <NewGame startNewGame={this.startNewGame} />}
         />
+        <Route path="/" render={(props) => <Landing />} />
         <Route component={NotFound} />
       </Switch>
     );

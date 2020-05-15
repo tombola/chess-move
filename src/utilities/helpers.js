@@ -33,3 +33,11 @@ export function positionLetterToNumber(letter) {
   }
   return null;
 }
+
+function isOdd(num) {
+  return num % 2;
+}
+
+export function getCurrentTurn(moveHistory) {
+  return isOdd(moveHistory.length) ? "black" : "white";
+}

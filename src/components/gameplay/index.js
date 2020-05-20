@@ -2,20 +2,20 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { formatRoute } from "react-router-named-routes";
 import { v4 as uuidv4 } from "uuid";
-import { GAME_INITIAL_STATE } from "../utilities/constants";
-import * as routes from "../utilities/routes";
+import { GAME_INITIAL_STATE } from "../../utilities/constants";
+import * as routes from "../../utilities/routes";
 import {
   disconnectGameFromStorage,
   restoreGameFromLocalStorage,
   syncGameWithStorage,
   updateGameLocalStorage,
-} from "../utilities/storage";
-import Landing from "./Landing";
+} from "../../utilities/storage";
+import Landing from "../gamesetup";
+import NewGame from "../gamesetup/NewGame";
+import NotFound from "../NotFound";
 import MoveDescription from "./MoveDescription";
 import MoveFrom from "./MoveFrom";
 import MoveTo from "./MoveTo";
-import NewGame from "./NewGame";
-import NotFound from "./NotFound";
 
 class Game extends React.Component {
   state = {

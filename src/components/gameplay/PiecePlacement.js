@@ -1,5 +1,5 @@
 import React from "react";
-import { COLUMNS, GAME_PIECE_NOTATION, ROWS } from "../utilities/constants";
+import { COLUMNS, GAME_PIECE_NOTATION, ROWS } from "../../utilities/constants";
 
 class PiecePlacement extends React.Component {
   columnRef = React.createRef();

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { formatRoute } from "react-router-named-routes";
-import { NEW_GAME } from "../utilities/routes";
+import { NEW_GAME } from "../../utilities/routes";
 
 class Landing extends React.Component {
   gameIdRef = React.createRef();

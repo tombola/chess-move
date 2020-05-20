@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { formatRoute } from "react-router-named-routes";
-import { NEXT_MOVE_FROM } from "../utilities/routes";
+import { NEXT_MOVE_FROM } from "../../utilities/routes";
 
 class NewGame extends React.Component {
   playSideRef = React.createRef();

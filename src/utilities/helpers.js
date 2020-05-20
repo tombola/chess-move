@@ -38,6 +38,6 @@ function isOdd(num) {
   return num % 2;
 }
 
-export function getCurrentTurn(moveHistory) {
+export function getCurrentPlayer(moveHistory) {
   return isOdd(moveHistory.length) ? "black" : "white";
 }

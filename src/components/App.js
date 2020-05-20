@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import "../App.css";
-import Game from "./gameplay";
+import Router from "./Router";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Game />
+        <Router />
       </BrowserRouter>
     </div>
   );

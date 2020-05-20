@@ -1,5 +1,17 @@
 import base from "../base";
 
+// // Prior usage in Game component
+// componentDidMount() {
+//   restoreGameFromLocalStorage(this);
+//   syncGameWithStorage(this);
+// }
+// componentDidUpdate() {
+//   updateGameLocalStorage(this);
+// }
+// componentWillUnmount() {
+//   disconnectGameFromStorage(this);
+// }
+
 export function syncGameWithStorage(game) {
   const gameId = game.state.gameId;
   console.log(game.state);
@@ -41,7 +53,6 @@ export function restoreGameFromLocalStorage(game) {
   }
 
   if (!game.state.gameId && localCurrentGameId) {
-    console.log("restore game from local storage");
     game.setState({ gameId: localCurrentGameId, localPlaySide, nextMove });
     // If we have a current game, check for unsubmitted next move
     if (localNextMove) {

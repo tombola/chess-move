@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import Game from "./components/gameplay";
+import Game from "../components/gameplay";
 
 test("renders next move link", () => {
   const { getByText } = render(
@@ -9,6 +9,6 @@ test("renders next move link", () => {
       <Game />
     </BrowserRouter>
   );
-  const nextMoveText = getByText(/next move/i);
+  const nextMoveText = getByText(/new game/i);
   expect(nextMoveText).toBeInTheDocument();
 });

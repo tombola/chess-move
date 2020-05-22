@@ -1,5 +1,5 @@
 import React from "react";
-import ChessPieceIcon from "./ChessPieceIcon";
+import ChessPiece from "./ChessPiece";
 import FromSquare from "./FromSquare";
 import NextMoveButton from "./NextMoveButton";
 import ToSquare from "./ToSquare";
@@ -12,7 +12,7 @@ function MoveDescription(props) {
   return (
     <React.Fragment>
       <FromSquare square={props.lastMove.from} />
-      <ChessPieceIcon chessPiece={props.lastMove.piece} />
+      <ChessPiece chessPiece={props.lastMove.piece} />
       <ToSquare square={props.lastMove.to} />
       <NextMoveButton />
     </React.Fragment>

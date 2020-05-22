@@ -1,12 +1,12 @@
 import React from "react";
-import { ReactComponent as ChessPieceIcon } from "../../images/chess_pieces/knight.svg";
+import { ReactComponent as ChessPieces } from "../../images/chess_pieces.svg";
 
 class ChessPiece extends React.Component {
   render() {
     return (
       <div className="chess-square">
-        {/* <span className="chess-piece">{this.props.chessPiece}</span> */}
-        <ChessPieceIcon />
+        <ChessPieces />
+        {this.props.chessPiece}
       </div>
     );
   }

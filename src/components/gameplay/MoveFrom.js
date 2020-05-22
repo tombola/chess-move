@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import ChessPiece from "./ChessPiece";
+import PiecePlacement from "./PiecePlacement";
 
 class MoveFrom extends React.Component {
   gotoMoveTo = () => {

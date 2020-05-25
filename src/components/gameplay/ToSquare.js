@@ -1,9 +1,7 @@
 import React from "react";
 
-class ToSquare extends React.Component {
-  render() {
-    return <p className="move-description--to">{this.props.position}</p>;
-  }
+function ToSquare({ ...position }) {
+  return <p className="move-description--to">{position}</p>;
 }
 
 export default ToSquare;

@@ -13,12 +13,11 @@ function Game(props) {
   const [gameState, setGameState] = useState(GAME_INITIAL_STATE);
   const [moveHistory, setMoveHistory] = useState([]);
   const [nextMove, setNextMove] = useState({ from: "", to: "", piece: "" });
-  const [lastMove, setLastMove] = useState({ from: "", to: "", piece: "" });
   const [playSide, setPlaySide] = useState(
     localStorage.getItem("currentGameSide")
   );
 
-  function buildNextMove(move) {
+  function constructNextMove(move) {
     if ("from" in move) {
       setNextMove(move);
     } else if ("to" in move) {
@@ -31,18 +30,20 @@ function Game(props) {
       if (isValidMovePartial(nextMove)) {
         return (
           <Move
-            buildNextMove={buildNextMove}
+            constructNextMove={constructNextMove}
             moveDescription="To"
             buttonText="Play ✓"
           />
         );
       } else {
-        return <Move buildNextMove={buildNextMove} moveDescription="From" />;
+        return (
+          <Move constructNextMove={constructNextMove} moveDescription="From" />
+        );
       }
     }
   }
 
-  return <MoveDescription move={lastMove}></MoveDescription>;
+  return <MoveDescription move={moveHistory.pop()}></MoveDescription>;
 }
 
 export default Game;

@@ -1,12 +1,12 @@
 import React from "react";
 import { COLUMNS, GAME_PIECE_NOTATION, ROWS } from "../../utilities/constants";
 
-class PiecePlacement extends React.Component {
+class Move extends React.Component {
   columnRef = React.createRef();
   rowRef = React.createRef();
   pieceRef = React.createRef();
 
-  submitPlacement = (event) => {
+  submitMove = (event) => {
     event.preventDefault();
     const move = {
       column: this.columnRef.current.value,
@@ -14,10 +14,7 @@ class PiecePlacement extends React.Component {
       piece: this.pieceRef.current.value,
     };
     // TODO: Validate the piece placement.
-    this.props.sendPlacement(move);
-    if (this.props.submitAction) {
-      this.props.submitAction();
-    }
+    this.props.buildNextMove(move);
   };
 
   render() {
@@ -42,7 +39,7 @@ class PiecePlacement extends React.Component {
       ""
     );
     return (
-      <form onSubmit={this.submitPlacement}>
+      <form onSubmit={this.submitMove}>
         {description}
         <select name="column" ref={this.columnRef}>
           {col_options}
@@ -61,4 +58,4 @@ class PiecePlacement extends React.Component {
   }
 }
 
-export default PiecePlacement;
+export default Move;

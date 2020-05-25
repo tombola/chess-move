@@ -5,9 +5,8 @@ import {
   isValidMove,
   isValidMovePartial,
 } from "../../utilities/helpers";
+import Move from "./Move";
 import MoveDescription from "./MoveDescription";
-import MoveFrom from "./MoveFrom";
-import MoveTo from "./MoveTo";
 
 function Game(props) {
   const [gameId, setGameId] = useState(props.match.gameId);
@@ -30,9 +29,15 @@ function Game(props) {
   if (getCurrentPlayer(moveHistory) === playSide) {
     if (!isValidMove(nextMove)) {
       if (isValidMovePartial(nextMove)) {
-        return <MoveTo buildNextMove={buildNextMove} />;
+        return (
+          <Move
+            buildNextMove={buildNextMove}
+            moveDescription="To"
+            buttonText="Play ✓"
+          />
+        );
       } else {
-        return <MoveFrom buildNextMove={buildNextMove} />;
+        return <Move buildNextMove={buildNextMove} moveDescription="From" />;
       }
     }
   }

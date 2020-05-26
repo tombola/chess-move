@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer } from "react";
 import { GAME_START_BOARD } from "../../utilities/constants";
 import {
   isCurrentPlayerMove,
@@ -48,7 +48,7 @@ function Game(props) {
   // const [moveHistory, setMoveHistory] = useState([]);
   // const [nextMove, setNextMove] = useState({ from: "", to: "", piece: "" });
 
-  const [playSide] = useState(localStorage.getItem("currentGameSide"));
+  const playSide = localStorage.getItem("currentGameSide");
   console.log(`(render) I am playing ${playSide}`);
 
   if (isCurrentPlayerMove(state, playSide)) {

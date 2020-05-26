@@ -1,4 +1,4 @@
-import { COLUMNS, ROWS } from "./constants";
+import { COLUMNS, GAME_PIECE_NOTATION, ROWS } from "./constants";
 
 function getNumber(numericString) {
   return !isNaN(numericString) ? parseInt(numericString) : null;
@@ -14,6 +14,10 @@ export function getColumn(position) {
   return position !== undefined && position.length === 2 ? position[0] : null;
 }
 
+function columnMatrixKey(columnLetter) {
+  return COLUMNS.indexOf(columnLetter);
+}
+
 export function getPosition(row, column) {
   if (!isNaN(row) && row <= 8 && COLUMNS.includes(column)) {
     return { row: row, col: column };
@@ -27,9 +31,9 @@ export function getCoordinates(position) {
 }
 
 export function positionLetterToNumber(letter) {
-  const positionLetter = COLUMNS.indexOf(letter);
-  if (positionLetter > -1) {
-    return COLUMNS.indexOf(letter) + 1;
+  const key = columnMatrixKey(letter);
+  if (key > -1) {
+    return key + 1;
   }
   return null;
 }
@@ -48,6 +52,16 @@ export function positionToString(position) {
 
 export function toggleSide(playSide) {
   return playSide === "white" ? "black" : "white";
+}
+
+export function getPieceAtPosition(gameState, position) {
+  const square =
+    gameState[getNumber(position.row) - 1][columnMatrixKey(position.column)];
+  if (square !== "") {
+    const piece = GAME_PIECE_NOTATION[square.substring(1)];
+    const side = square.substring(0, 1) === "W" ? "white" : "black";
+    return { piece, side };
+  }
 }
 
 function isOdd(num) {

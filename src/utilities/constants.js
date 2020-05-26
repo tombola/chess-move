@@ -1,6 +1,6 @@
 import React from "react";
 
-export const COLUMNS = ["A", "B", "C", "D", "E", "F", "G", "H"];
+export const COLUMNS = ["H", "G", "F", "E", "D", "C", "B", "A"];
 export const ROWS = [1, 2, 3, 4, 5, 6, 7, 8];
 
 export const GAME_PIECE_CHARACTERS = {
@@ -22,21 +22,22 @@ export const GAME_PIECE_NOTATION = {
 };
 
 export const GAME_START_BOARD = [
-  ["BR", "BN", "BB", "BQ", "BK", "BB", "BN", "BR"],
-  ["BP", "BP", "BP", "BP", "BP", "BP", "BP", "BP"],
-  ["", "", "", "", "", "", "", ""],
-  ["", "", "", "", "", "", "", ""],
-  ["", "", "", "", "", "", "", ""],
-  ["", "", "", "", "", "", "", ""],
-  ["WP", "WP", "WP", "WP", "WP", "WP", "WP", "WP"],
-  ["WR", "WN", "WB", "WQ", "WK", "WB", "WN", "WR"],
+  // H    G     F     E     D      C    B     A
+  ["WR", "WN", "WB", "WK", "WQ", "WB", "WN", "WR"], // 1
+  ["WP", "WP", "WP", "WP", "WP", "WP", "WP", "WP"], // 2
+  ["", "", "", "", "", "", "", ""], //                 3
+  ["", "", "", "", "", "", "", ""], //                 4
+  ["", "", "", "", "", "", "", ""], //                 5
+  ["", "", "", "", "", "", "", ""], //                 6
+  ["BP", "BP", "BP", "BP", "BP", "BP", "BP", "BP"], // 7
+  ["BR", "BN", "BB", "BK", "BQ", "BB", "BN", "BR"], // 8
 ];
 
 export const COL_OPTIONS = COLUMNS.map((c) => (
   <option value={c} key={`c${c}`}>
     {c}
   </option>
-));
+)).reverse();
 
 export const ROW_OPTIONS = ROWS.map((r) => (
   <option value={r} key={`r${r}`}>

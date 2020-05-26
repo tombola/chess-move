@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
 import { GAME_START_BOARD } from "../../utilities/constants";
 import {
+  getPieceAtPosition,
   isCurrentPlayerMove,
   isValidMove,
   isValidMovePartial,
@@ -24,7 +25,11 @@ const GAME_INITIAL_STATE = {
 const gameReducer = (state, action) => {
   switch (action.type) {
     case gameActions.moveFrom:
-      const partialMove = { ...state.nextMove, from: action.position };
+      const partialMove = {
+        ...state.nextMove,
+        from: action.position,
+        piece: getPieceAtPosition(state.gameState, action.position).piece,
+      };
       if (isValidMovePartial(partialMove)) {
         return { ...state, nextMove: partialMove };
       }
@@ -35,6 +40,7 @@ const gameReducer = (state, action) => {
         const moveHistory = [...state.moveHistory, thisMove];
         return { ...state, moveHistory, nextMove: null };
       }
+      console.log("invalid");
       break;
     default:
       return state;
@@ -51,9 +57,12 @@ function Game(props) {
       return <MoveTarget dispatchMove={dispatch} />;
     }
     return <MoveOrigin dispatchMove={dispatch} />;
+  } else {
+    if (state.moveHistory.length === 0) {
+      return <h2>Awaiting first move</h2>;
+    }
+    return <MoveDescription move={state.moveHistory.pop()}></MoveDescription>;
   }
-
-  return <MoveDescription move={state.moveHistory.pop()}></MoveDescription>;
 }
 
 export default Game;

@@ -24,10 +24,9 @@ export function getPosition(row, column) {
   }
 }
 
-export function getCoordinates(position) {
-  if (position.length === 2) {
-    return { x: positionLetterToNumber(position[0]), y: position[1] };
-  }
+export function getMatrixKeys(position) {
+  // Matrix coordinates with origin as position A1
+  return [parseInt(position.row), positionLetterToNumber(position.column)];
 }
 
 export function positionLetterToNumber(letter) {
@@ -35,7 +34,6 @@ export function positionLetterToNumber(letter) {
   if (key > -1) {
     return key + 1;
   }
-  return null;
 }
 
 // // Position string with side (W/B) to position alone
@@ -48,6 +46,12 @@ export function positionToString(position) {
     return position.column + position.row;
   }
   return typeof position === "string" ? position : null;
+}
+
+export function positionFromString(position) {
+  if (position.length === 2) {
+    return { column: position.substring(0, 1), row: position.substring(1) };
+  }
 }
 
 export function toggleSide(playSide) {
@@ -64,8 +68,18 @@ export function getPieceAtPosition(gameState, position) {
   }
 }
 
+export function getSquareColour(position) {
+  // See constants GAME_START_BOARD for matrix
+  const matrixKeys = getMatrixKeys(position);
+  if (isOdd(matrixKeys[0])) {
+    return isOdd(matrixKeys[1]) ? "white" : "black";
+  } else {
+    return isOdd(matrixKeys[1]) ? "black" : "white";
+  }
+}
+
 function isOdd(num) {
-  return num % 2;
+  return num % 2 === 1;
 }
 
 export function getCurrentPlayer(moveHistory) {

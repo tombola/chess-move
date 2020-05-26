@@ -28,7 +28,7 @@ const gameReducer = (state, action) => {
       const partialMove = {
         ...state.nextMove,
         from: action.position,
-        piece: getPieceAtPosition(state.gameState, action.position).piece,
+        piece: getPieceAtPosition(state.gameState, action.position),
       };
       if (isValidMovePartial(partialMove)) {
         return { ...state, nextMove: partialMove };

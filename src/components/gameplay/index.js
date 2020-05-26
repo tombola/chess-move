@@ -5,8 +5,9 @@ import {
   isValidMove,
   isValidMovePartial,
 } from "../../utilities/helpers";
-import Move from "./Move";
 import MoveDescription from "./MoveDescription";
+import MoveOrigin from "./MoveOrigin";
+import MoveTarget from "./MoveTarget";
 
 export const gameActions = {
   moveFrom: "MOVE_FROM",
@@ -23,19 +24,24 @@ const GAME_INITIAL_STATE = {
 const gameReducer = (state, action) => {
   switch (action.type) {
     case gameActions.moveFrom:
-      if (isValidMovePartial(action.move)) {
+      if (isValidMovePartial(action.position)) {
         console.log("valid move origin");
       }
-      console.log(`Move from square ${action.move.column}${action.move.row}`);
-      console.log(action.move);
-      return { ...state, nextMove: { from: action.move } };
+      console.log(
+        `Move from square ${action.position.column}${action.position.row}`
+      );
+      console.log(action.position);
+      return { ...state, nextMove: { from: action.position } };
     case gameActions.moveTo:
-      if (isValidMove(action.move)) {
+      if (isValidMove(action.position)) {
         console.log("valid full move");
       }
-      console.log(`Move to square ${action.move.column}${action.move.row}`);
-      console.log(action.move);
-      return state;
+      console.log(
+        `Move to square ${action.position.column}${action.position.row}`
+      );
+      const thisMove = { ...state.nextMove, to: action.position };
+      const moveHistory = [...state.moveHistory, thisMove];
+      return { ...state, moveHistory, nextMove: null };
     default:
       return state;
   }
@@ -43,28 +49,14 @@ const gameReducer = (state, action) => {
 
 function Game(props) {
   const [state, dispatch] = useReducer(gameReducer, GAME_INITIAL_STATE);
-
   const playSide = localStorage.getItem("currentGameSide");
   console.log(`(render) I am playing ${playSide}`);
 
   if (isCurrentPlayerMove(state, playSide)) {
     if (state.nextMove && "from" in state.nextMove) {
-      return (
-        <Move
-          dispatchMove={dispatch}
-          dispatchActionType={gameActions.moveTo}
-          moveDescription="To"
-          buttonText="Play ✓"
-        />
-      );
+      return <MoveTarget dispatchMove={dispatch} />;
     }
-    return (
-      <Move
-        dispatchMove={dispatch}
-        dispatchActionType={gameActions.moveFrom}
-        moveDescription="From"
-      />
-    );
+    return <MoveOrigin dispatchMove={dispatch} />;
   }
 
   return <MoveDescription move={state.moveHistory.pop()}></MoveDescription>;

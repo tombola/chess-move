@@ -1,7 +1,12 @@
 import React from "react";
+import { positionToString } from "../../utilities/helpers";
 
-function FromSquare({ ...position }) {
-  return <p className="move-description--from">{position} →</p>;
+function FromSquare(props) {
+  return (
+    <p className="move-description--from">
+      {positionToString(props.position)} →
+    </p>
+  );
 }
 
 export default FromSquare;

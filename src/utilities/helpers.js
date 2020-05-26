@@ -34,6 +34,21 @@ export function positionLetterToNumber(letter) {
   return null;
 }
 
+// // Position string with side (W/B) to position alone
+// if (typeof position === "string") {
+//   return position.length === 2 ? position : position.substring(0, 2);
+// }
+
+export function positionToString(position) {
+  console.log(position);
+  console.log(typeof position);
+  if (typeof position === "object") {
+    console.log(position);
+    return position.column + position.row;
+  }
+  return typeof position === "string" ? position : null;
+}
+
 export function toggleSide(playSide) {
   return playSide === "white" ? "black" : "white";
 }
@@ -43,7 +58,6 @@ function isOdd(num) {
 }
 
 export function getCurrentPlayer(moveHistory) {
-  let currentPlayer = isOdd(moveHistory.length) ? "black" : "white";
   return isOdd(moveHistory.length) ? "black" : "white";
 }
 
@@ -68,7 +82,7 @@ function validMoveOrigin(square) {
   return validSquare(square);
 }
 
-function validMoveDestination(square) {
+function validMoveTarget(square) {
   // TODO: check against game state
   return validSquare(square);
 }
@@ -80,10 +94,10 @@ export function isValidMove(move) {
   if (move === null || Object.keys(move).length === 0) {
     return false;
   }
-  // Is missing a property
+  // Has to and from elements
   if (move.hasOwnProperty("from") && move.hasOwnProperty("to")) {
-    // Has valid elements?
-    return validMoveOrigin(move.from) && validMoveDestination(move.to);
+    // Has valid origin/target
+    return validMoveOrigin(move.from) && validMoveTarget(move.to);
   }
   return false;
 }

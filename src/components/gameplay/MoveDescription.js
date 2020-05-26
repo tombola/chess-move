@@ -5,15 +5,16 @@ import NextMoveButton from "./NextMoveButton";
 import ToSquare from "./ToSquare";
 
 function MoveDescription(props) {
-  if (props.lastMove === undefined) {
+  if (props.move === undefined) {
     return <h2>Awaiting first move</h2>;
   }
+  console.log(props);
 
   return (
     <React.Fragment>
-      <FromSquare square={props.lastMove.from} />
-      <ChessPiece chessPiece={props.lastMove.piece} />
-      <ToSquare square={props.lastMove.to} />
+      <FromSquare position={props.move.from} />
+      <ChessPiece chessPiece={props.move.piece} />
+      <ToSquare position={props.move.to} />
       <NextMoveButton />
     </React.Fragment>
   );

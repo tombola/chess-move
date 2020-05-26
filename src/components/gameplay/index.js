@@ -43,10 +43,6 @@ const gameReducer = (state, action) => {
 
 function Game(props) {
   const [state, dispatch] = useReducer(gameReducer, GAME_INITIAL_STATE);
-  // const [gameId, setGameId] = useState(props.match.gameId);
-  // const [gameState, setGameState] = useState(GAME_START_BOARD);
-  // const [moveHistory, setMoveHistory] = useState([]);
-  // const [nextMove, setNextMove] = useState({ from: "", to: "", piece: "" });
 
   const playSide = localStorage.getItem("currentGameSide");
   console.log(`(render) I am playing ${playSide}`);

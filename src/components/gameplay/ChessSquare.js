@@ -1,18 +1,19 @@
 import React from "react";
 import { ReactComponent as ChessPieces } from "../../images/chess_pieces.svg";
 
-function ChessPiece(props) {
+function ChessSquare(props) {
   // See https://codepen.io/tombolatron/pen/gOaqVaJ
   // TODO: ChessPieces svg should be added to DOM by higher component
   // so that multiple pieces can be displayed at one time.
+
   return (
-    <div className="chess-square">
+    <div className={`chess-square chess-square--${squareColour}`}>
       <ChessPieces />
-      <svg>
-        <use xlinkHref={`#${props.chessPiece}`} />
+      <svg className={`chess-piece chess-piece--${pieceColour}`}>
+        <use xlinkHref={`#${props.chessPiece.toLowerCase()}`} />
       </svg>
     </div>
   );
 }
 
-export default ChessPiece;
+export default ChessSquare;

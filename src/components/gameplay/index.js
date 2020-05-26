@@ -27,21 +27,14 @@ const gameReducer = (state, action) => {
       if (isValidMovePartial(action.position)) {
         console.log("valid move origin");
       }
-      console.log(
-        `Move from square ${action.position.column}${action.position.row}`
-      );
-      console.log(action.position);
       return { ...state, nextMove: { from: action.position } };
     case gameActions.moveTo:
-      if (isValidMove(action.position)) {
-        console.log("valid full move");
-      }
-      console.log(
-        `Move to square ${action.position.column}${action.position.row}`
-      );
       const thisMove = { ...state.nextMove, to: action.position };
-      const moveHistory = [...state.moveHistory, thisMove];
-      return { ...state, moveHistory, nextMove: null };
+      if (isValidMove(thisMove)) {
+        console.log("valid full move");
+        const moveHistory = [...state.moveHistory, thisMove];
+        return { ...state, moveHistory, nextMove: null };
+      }
     default:
       return state;
   }

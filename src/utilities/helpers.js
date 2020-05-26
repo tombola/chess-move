@@ -40,10 +40,7 @@ export function positionLetterToNumber(letter) {
 // }
 
 export function positionToString(position) {
-  console.log(position);
-  console.log(typeof position);
   if (typeof position === "object") {
-    console.log(position);
     return position.column + position.row;
   }
   return typeof position === "string" ? position : null;
@@ -65,31 +62,28 @@ export function isCurrentPlayerMove(state, playSide) {
   return playSide && getCurrentPlayer(state.moveHistory) === playSide;
 }
 
-function validSquare(square) {
-  console.log(square);
-  let rowNumber = getNumber(square.row);
+function validPosition(position) {
+  let rowNumber = getNumber(position.row);
   return (
-    "column" in square &&
-    "row" in square &&
-    square.column in COLUMNS &&
-    rowNumber in ROWS
+    "column" in position &&
+    "row" in position &&
+    COLUMNS.includes(position.column) &&
+    ROWS.includes(rowNumber)
   );
 }
 
 function validMoveOrigin(square) {
   // TODO: check piece is player's side
   // TODO: check against game state
-  return validSquare(square);
+  return validPosition(square);
 }
 
 function validMoveTarget(square) {
   // TODO: check against game state
-  return validSquare(square);
+  return validPosition(square);
 }
 
 export function isValidMove(move) {
-  console.log(move);
-
   // Empty move object
   if (move === null || Object.keys(move).length === 0) {
     return false;
@@ -110,7 +104,7 @@ export function isValidMovePartial(move) {
   // Is missing a property
   if (move.hasOwnProperty("from")) {
     // Has valid elements?
-    return validSquare(move.from);
+    return validPosition(move.from);
   }
   return false;
 }

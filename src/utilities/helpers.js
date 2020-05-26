@@ -1,4 +1,4 @@
-import { COLUMNS, GAME_PIECE_NOTATION, ROWS } from "./constants";
+import { COLUMNS, ROWS } from "./constants";
 
 function getNumber(numericString) {
   return !isNaN(numericString) ? parseInt(numericString) : null;
@@ -43,13 +43,22 @@ function isOdd(num) {
 }
 
 export function getCurrentPlayer(moveHistory) {
+  let currentPlayer = isOdd(moveHistory.length) ? "black" : "white";
   return isOdd(moveHistory.length) ? "black" : "white";
 }
 
+export function isCurrentPlayerMove(state, playSide) {
+  return playSide && getCurrentPlayer(state.moveHistory) === playSide;
+}
+
 function validSquare(square) {
-  let rowNumber = getNumber(square[1]);
+  console.log(square);
+  let rowNumber = getNumber(square.row);
   return (
-    square.length === 2 && square[0] in ROWS && rowNumber && rowNumber <= 8
+    "column" in square &&
+    "row" in square &&
+    square.column in COLUMNS &&
+    rowNumber in ROWS
   );
 }
 
@@ -65,35 +74,29 @@ function validMoveDestination(square) {
 }
 
 export function isValidMove(move) {
+  console.log(move);
+
   // Empty move object
-  if (Object.keys(move).length === 0) {
+  if (move === null || Object.keys(move).length === 0) {
     return false;
   }
   // Is missing a property
-  if (
-    move.hasOwnProperty("from") &&
-    move.hasOwnProperty("to") &&
-    move.hasOwnProperty("piece")
-  ) {
+  if (move.hasOwnProperty("from") && move.hasOwnProperty("to")) {
     // Has valid elements?
-    return (
-      validMoveOrigin(move.from) &&
-      validMoveDestination(move.to) &&
-      move.piece in GAME_PIECE_NOTATION
-    );
+    return validMoveOrigin(move.from) && validMoveDestination(move.to);
   }
-  return true;
+  return false;
 }
 
 export function isValidMovePartial(move) {
   // Empty move object
-  if (Object.keys(move).length === 0) {
+  if (move === null || Object.keys(move).length === 0) {
     return false;
   }
   // Is missing a property
-  if (move.hasOwnProperty("from") && move.hasOwnProperty("piece")) {
+  if (move.hasOwnProperty("from")) {
     // Has valid elements?
-    return validSquare(move.from) && move.piece in GAME_PIECE_NOTATION;
+    return validSquare(move.from);
   }
-  return true;
+  return false;
 }

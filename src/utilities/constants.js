@@ -19,7 +19,7 @@ export const GAME_PIECE_NOTATION = {
   P: "Pawn",
 };
 
-export const GAME_INITIAL_STATE = [
+export const GAME_START_BOARD = [
   ["BR", "BN", "BB", "BQ", "BK", "BB", "BN", "BR"],
   ["BP", "BP", "BP", "BP", "BP", "BP", "BP", "BP"],
   ["", "", "", "", "", "", "", ""],

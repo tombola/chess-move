@@ -24,17 +24,18 @@ const GAME_INITIAL_STATE = {
 const gameReducer = (state, action) => {
   switch (action.type) {
     case gameActions.moveFrom:
-      if (isValidMovePartial(action.position)) {
-        console.log("valid move origin");
+      const partialMove = { ...state.nextMove, from: action.position };
+      if (isValidMovePartial(partialMove)) {
+        return { ...state, nextMove: partialMove };
       }
-      return { ...state, nextMove: { from: action.position } };
+      break;
     case gameActions.moveTo:
       const thisMove = { ...state.nextMove, to: action.position };
       if (isValidMove(thisMove)) {
-        console.log("valid full move");
         const moveHistory = [...state.moveHistory, thisMove];
         return { ...state, moveHistory, nextMove: null };
       }
+      break;
     default:
       return state;
   }

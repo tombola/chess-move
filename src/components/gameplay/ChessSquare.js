@@ -1,5 +1,7 @@
+import { string } from "prop-types";
 import React from "react";
 import { ReactComponent as ChessPieces } from "../../images/chess_pieces.svg";
+import { chessPieceType } from "./types";
 
 function ChessSquare(props) {
   // See https://codepen.io/tombolatron/pen/gOaqVaJ
@@ -19,5 +21,10 @@ function ChessSquare(props) {
     </div>
   );
 }
+
+ChessSquare.propTypes = {
+  chessPiece: chessPieceType.isRequired,
+  squareColour: string.isRequired,
+};
 
 export default ChessSquare;

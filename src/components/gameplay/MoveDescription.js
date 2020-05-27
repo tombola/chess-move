@@ -3,6 +3,7 @@ import { getSquareColour } from "../../utilities/helpers";
 import ChessSquare from "./ChessSquare";
 import FromSquare from "./FromSquare";
 import ToSquare from "./ToSquare";
+import { moveType } from "./types";
 
 function MoveDescription(props) {
   const toSquareColour = getSquareColour(props.move.to);
@@ -20,5 +21,9 @@ function MoveDescription(props) {
     </React.Fragment>
   );
 }
+
+MoveDescription.propTypes = {
+  move: moveType.isRequired,
+};
 
 export default MoveDescription;

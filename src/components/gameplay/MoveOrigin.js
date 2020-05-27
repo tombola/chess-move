@@ -5,6 +5,7 @@ import {
   ROW_OPTIONS,
 } from "../../utilities/constants";
 import { gameActions } from "./index";
+import { dispatchType } from "./types";
 
 function MoveOrigin(props) {
   const columnRef = React.useRef();
@@ -33,9 +34,13 @@ function MoveOrigin(props) {
       <select name="piece" ref={pieceRef}>
         {PIECE_OPTIONS}
       </select>
-      <button type="submit">{props.buttonText ? props.buttonText : "✓"}</button>
+      <button type="submit">Next</button>
     </form>
   );
 }
+
+MoveOrigin.propTypes = {
+  dispatchMove: dispatchType,
+};
 
 export default MoveOrigin;

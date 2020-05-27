@@ -1,5 +1,6 @@
 import React from "react";
 import { positionToString } from "../../utilities/helpers";
+import { positionType } from "./types";
 
 function FromSquare(props) {
   return (
@@ -8,5 +9,9 @@ function FromSquare(props) {
     </p>
   );
 }
+
+FromSquare.propTypes = {
+  position: positionType.isRequired,
+};
 
 export default FromSquare;

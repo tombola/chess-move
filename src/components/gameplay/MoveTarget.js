@@ -1,6 +1,7 @@
 import React from "react";
 import { COL_OPTIONS, ROW_OPTIONS } from "../../utilities/constants";
 import { gameActions } from "./index";
+import { dispatchType } from "./types";
 
 function MoveTarget(props) {
   const columnRef = React.useRef();
@@ -30,5 +31,9 @@ function MoveTarget(props) {
     </React.Fragment>
   );
 }
+
+MoveTarget.propTypes = {
+  dispatchMove: dispatchType,
+};
 
 export default MoveTarget;

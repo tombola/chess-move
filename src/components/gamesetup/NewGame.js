@@ -6,7 +6,7 @@ function NewGame(props) {
   const submitNewGame = (side) => {
     const newGameId = uuidv4();
 
-    localStorage.setItem("currentGame", newGameId);
+    localStorage.setItem("currentGameId", newGameId);
     localStorage.setItem("currentGameSide", side);
     props.history.push(`/game/${newGameId}`);
   };

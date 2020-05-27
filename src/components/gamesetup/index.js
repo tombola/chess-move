@@ -3,22 +3,28 @@ import { Link } from "react-router-dom";
 import NewGame from "./NewGame";
 
 function GameSetup(props) {
-  const [currentGameId] = useState(localStorage.getItem("currentGameId"));
   const [startNew, setStartNew] = useState(false);
-  console.log(currentGameId);
-  console.log(startNew);
-  if (currentGameId && !startNew) {
-    return (
-      <React.Fragment>
-        <h1 onClick={() => setStartNew("true")}>New Game</h1>
-        <p>
-          <Link to={`/game/$currentGameId`}>Continue current game</Link>
-        </p>
-      </React.Fragment>
-    );
-  } else {
+  const newGameLink = <h1 onClick={() => setStartNew("true")}>New Game</h1>;
+  let continueGameLink = null;
+
+  if (startNew) {
     return <NewGame />;
   }
+
+  if (localStorage.getItem("currentGameId")) {
+    continueGameLink = (
+      <p>
+        <Link to={`/game/$currentGameId`}>Continue current game</Link>
+      </p>
+    );
+  }
+
+  return (
+    <React.Fragment>
+      {newGameLink}
+      {continueGameLink}
+    </React.Fragment>
+  );
 }
 
 export default GameSetup;

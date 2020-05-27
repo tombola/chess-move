@@ -1,14 +1,30 @@
 import { render } from "@testing-library/react";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import Game from "../components/gameplay";
+import GameSetup from "../components/gamesetup";
+import Router from "../components/Router";
 
-test("renders next move link", () => {
-  const { getByText } = render(
+function renderWithRouter(component) {
+  return render(
     <BrowserRouter>
-      <Game />
+      <Router>{component}</Router>
     </BrowserRouter>
   );
-  const nextMoveText = getByText(/new game/i);
+}
+
+beforeEach(() => {
+  localStorage.clear();
+});
+
+test("Renders next move link", () => {
+  const { getByText } = renderWithRouter(<GameSetup />);
+  const nextMoveText = getByText(/New Game/i);
   expect(nextMoveText).toBeInTheDocument();
+});
+
+test("Renders continue game link", () => {
+  localStorage.setItem("currentGameId", "fdgh124");
+  const { getByText } = renderWithRouter(<GameSetup />);
+  const continueGameLink = getByText(/Continue current game/i);
+  expect(continueGameLink).toBeInTheDocument();
 });

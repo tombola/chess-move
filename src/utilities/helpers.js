@@ -61,7 +61,7 @@ export function toggleSide(playSide) {
 
 export function getPieceAtPosition(gameState, position) {
   const square =
-    gameState[_getNumber(position.row) - 1][columnMatrixKey(position.column)];
+    gameState[_getNumber(position.row) - 1][_columnMatrixKey(position.column)];
   if (square !== "") {
     const piece = GAME_PIECE_NOTATION[square.substring(1)];
     const side = square.substring(0, 1) === "W" ? "white" : "black";
@@ -87,8 +87,8 @@ export function getCurrentPlayer(moveHistory) {
   return _isOdd(moveHistory.length) ? "black" : "white";
 }
 
-export function isCurrentPlayerMove(state, playSide) {
-  return playSide && getCurrentPlayer(state.moveHistory) === playSide;
+export function isCurrentPlayerMove(moveHistory, playSide) {
+  return playSide && getCurrentPlayer(moveHistory) === playSide;
 }
 
 function _validPosition(position) {

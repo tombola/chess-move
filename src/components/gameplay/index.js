@@ -71,7 +71,7 @@ function Game(props) {
   }, [currentGameId]);
   console.log(`(render) I am playing ${playSide}`);
 
-  if (isCurrentPlayerMove(state, playSide)) {
+  if (isCurrentPlayerMove(state.moveHistory, playSide)) {
     if (state.nextMove && "from" in state.nextMove) {
       return <MoveTarget dispatchMove={dispatch} />;
     }

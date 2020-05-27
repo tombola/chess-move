@@ -1,4 +1,5 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
+import { useParams } from "react-router-dom";
 import { GAME_START_BOARD } from "../../utilities/constants";
 import {
   getPieceAtPosition,
@@ -13,6 +14,7 @@ import MoveTarget from "./MoveTarget";
 export const gameActions = {
   moveFrom: "MOVE_FROM",
   moveTo: "MOVE_TO",
+  setGame: "SET_GAME",
 };
 
 const GAME_INITIAL_STATE = {
@@ -42,17 +44,31 @@ const gameReducer = (state, action) => {
       }
       console.log("invalid");
       break;
+    case gameActions.setGame:
+      // TODO: fetch the game state from a different persisted game
+      console.log(`sync to game: ${action.gameId}`);
+      return state;
     default:
       return state;
   }
 };
 
 function Game(props) {
+  const { currentGameId } = useParams();
   const [state, dispatch] = useReducer(gameReducer, GAME_INITIAL_STATE, () => ({
     ...GAME_INITIAL_STATE,
-    gameId: props.match.params.gameId,
+    gameId: currentGameId,
   }));
+
   const playSide = localStorage.getItem("currentGameSide");
+
+  // Change game based on URL param
+  useEffect(() => {
+    if (currentGameId !== localStorage.getItem("currentGameId")) {
+      dispatch({ type: gameActions.setGame, gameId: currentGameId });
+      localStorage.setItem("currentGameId", currentGameId);
+    }
+  }, [currentGameId]);
   console.log(`(render) I am playing ${playSide}`);
 
   if (isCurrentPlayerMove(state, playSide)) {

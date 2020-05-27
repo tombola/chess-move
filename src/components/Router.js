@@ -7,7 +7,7 @@ import NotFound from "./NotFound";
 function Router(props) {
   return (
     <Switch>
-      <Route path={"/game/:gameId"} component={Game} />
+      <Route path={"/game/:currentGameId"} component={Game} />
       <Route path="/" component={GameSetup} />
       <Route component={NotFound} />
     </Switch>

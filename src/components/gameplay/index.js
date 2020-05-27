@@ -48,7 +48,10 @@ const gameReducer = (state, action) => {
 };
 
 function Game(props) {
-  const [state, dispatch] = useReducer(gameReducer, GAME_INITIAL_STATE);
+  const [state, dispatch] = useReducer(gameReducer, GAME_INITIAL_STATE, () => ({
+    ...GAME_INITIAL_STATE,
+    gameId: props.match.params.gameId,
+  }));
   const playSide = localStorage.getItem("currentGameSide");
   console.log(`(render) I am playing ${playSide}`);
 

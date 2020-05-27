@@ -1,14 +1,15 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
+import { useHistory } from "react-router-dom";
+import shortid from "shortid";
 
 function NewGame(props) {
+  const history = useHistory();
   const submitNewGame = (side) => {
-    const newGameId = uuidv4();
+    const newGameId = shortid.generate();
 
     localStorage.setItem("currentGameId", newGameId);
     localStorage.setItem("currentGameSide", side);
-    props.history.push(`/game/${newGameId}`);
+    history.push(`/game/${newGameId}`);
   };
 
   return (
@@ -30,4 +31,4 @@ function NewGame(props) {
   );
 }
 
-export default withRouter(NewGame);
+export default NewGame;

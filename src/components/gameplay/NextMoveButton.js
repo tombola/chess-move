@@ -1,9 +1,9 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function NextMoveButton(props) {
   function nextMove() {
-    const { history } = this.props;
+    const history = useHistory();
     if (history) {
       history.push("next/from");
     }
@@ -15,4 +15,4 @@ function NextMoveButton(props) {
   );
 }
 
-export default withRouter(NextMoveButton);
+export default NextMoveButton;

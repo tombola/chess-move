@@ -8,7 +8,7 @@ function Router(props) {
   return (
     <Switch>
       <Route path={"/game/:gameId"} component={Game} />
-      <Route path="/" render={(props) => <GameSetup />} />
+      <Route path="/" component={GameSetup} />
       <Route component={NotFound} />
     </Switch>
   );

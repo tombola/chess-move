@@ -3,7 +3,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import GameSetup from "../components/gamesetup";
 
-function renderWithRouter(component) {
+function renderGameSetupWithRouter(component) {
   return render(
     <BrowserRouter>
       <Switch>
@@ -17,15 +17,15 @@ beforeEach(() => {
   localStorage.clear();
 });
 
-test("Renders next move link", () => {
-  renderWithRouter(<GameSetup />);
+test("should render next move link", () => {
+  renderGameSetupWithRouter(<GameSetup />);
   const nextMoveText = screen.getByText(/New Game/i);
   expect(nextMoveText).toBeInTheDocument();
 });
 
-test("Renders continue game link", () => {
+test("should render continue game link", () => {
   localStorage.setItem("currentGameId", "fdgh124");
-  renderWithRouter(<GameSetup />);
+  renderGameSetupWithRouter(<GameSetup />);
   const continueGameLink = screen.getByText(/Continue current game/i);
   expect(continueGameLink).toBeInTheDocument();
 });

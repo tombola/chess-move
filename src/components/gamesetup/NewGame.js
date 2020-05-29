@@ -16,13 +16,21 @@ function NewGame(props) {
   return (
     <React.Fragment>
       <p>Which side would you like to play?</p>
-      <div onClick={() => submitNewGame("white")}>
+      <div
+        role="button"
+        aria-label="white"
+        onClick={() => submitNewGame("white")}
+      >
         <ChessSquare
           chessPiece={{ piece: "Queen", side: "white" }}
           squareColour={"black"}
         />
       </div>
-      <div onClick={() => submitNewGame("black")}>
+      <div
+        role="button"
+        aria-label="black"
+        onClick={() => submitNewGame("black")}
+      >
         <ChessSquare
           chessPiece={{ piece: "Queen", side: "black" }}
           squareColour={"white"}

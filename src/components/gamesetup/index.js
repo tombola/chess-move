@@ -4,7 +4,11 @@ import NewGame from "./NewGame";
 
 function GameSetup(props) {
   const [startNew, setStartNew] = useState(false);
-  const newGameLink = <h1 onClick={() => setStartNew("true")}>New Game</h1>;
+  const newGameLink = (
+    <h1 role="button" onClick={() => setStartNew("true")}>
+      New Game
+    </h1>
+  );
   let continueGameLink = null;
 
   if (startNew) {

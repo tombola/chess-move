@@ -1,3 +1,4 @@
+import React from "react";
 import { COLUMNS, GAME_PIECE_NOTATION, ROWS } from "./constants";
 
 function _getNumber(numericString) {
@@ -136,4 +137,42 @@ export function isValidMovePartial(move) {
     return _validPosition(move.from);
   }
   return false;
+}
+
+function _nullOption(prefix) {
+  return (
+    <option value="" key={prefix + "None"}>
+      -
+    </option>
+  );
+}
+
+export function getColumnOptions() {
+  let options = COLUMNS.map((c) => (
+    <option value={c} key={`c${c}`}>
+      {c}
+    </option>
+  )).reverse();
+  options.unshift(_nullOption("c"));
+  return options;
+}
+
+export function getRowOptions() {
+  let options = ROWS.map((r) => (
+    <option value={r} key={`r${r}`}>
+      {r}
+    </option>
+  ));
+  options.unshift(_nullOption("r"));
+  return options;
+}
+
+export function getPieceOptions() {
+  let options = Object.keys(GAME_PIECE_NOTATION).map((p) => (
+    <option value={p} key={p}>
+      {GAME_PIECE_NOTATION[p]}
+    </option>
+  ));
+  options.unshift(_nullOption("p"));
+  return options;
 }

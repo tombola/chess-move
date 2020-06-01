@@ -1,9 +1,9 @@
 import React from "react";
 import {
-  COL_OPTIONS,
-  PIECE_OPTIONS,
-  ROW_OPTIONS,
-} from "../../utilities/constants";
+  getColumnOptions,
+  getPieceOptions,
+  getRowOptions,
+} from "../../utilities/helpers";
 import { gameActions } from "./index";
 import { dispatchType } from "./types";
 
@@ -25,14 +25,17 @@ function MoveOrigin(props) {
   return (
     <form onSubmit={submitMove}>
       <h2>From</h2>
-      <select name="column" ref={columnRef}>
-        {COL_OPTIONS}
+      <label htmlFor="column">Column</label>
+      <select name="column" id="column" ref={columnRef}>
+        {getColumnOptions()}
       </select>
-      <select name="row" ref={rowRef}>
-        {ROW_OPTIONS}
+      <label htmlFor="row">Row</label>
+      <select name="row" id="row" ref={rowRef}>
+        {getRowOptions()}
       </select>
-      <select name="piece" ref={pieceRef}>
-        {PIECE_OPTIONS}
+      <label htmlFor="piece">Piece</label>
+      <select name="piece" id="piece" ref={pieceRef}>
+        {getPieceOptions()}
       </select>
       <button type="submit">Next</button>
     </form>

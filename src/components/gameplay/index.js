@@ -46,7 +46,6 @@ const gameReducer = (state, action) => {
       break;
     case gameActions.setGame:
       // TODO: fetch the game state from a different persisted game
-      console.log(`sync to game: ${action.gameId}`);
       return state;
     default:
       return state;
@@ -69,7 +68,6 @@ function Game(props) {
       localStorage.setItem("currentGameId", currentGameId);
     }
   }, [currentGameId]);
-  console.log(`(render) I am playing ${playSide}`);
 
   if (isCurrentPlayerMove(state.moveHistory, playSide)) {
     if (state.nextMove && "from" in state.nextMove) {
